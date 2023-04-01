@@ -1,0 +1,17 @@
+<!-- terms/templates/terms/keyword_list.html -->
+{% extends "terms/base.html" %}
+{% block content %}
+{% for kw in page_obj %}<pre>{{kw}}</pre>{% endfor %}
+{% endblock %}
+{% block pagination %}
+<p>Current Page: <b>{{page_obj.number}}</b></p>
+
+{% for page_number in page_obj.paginator.page_range %}
+<a
+href="{% url 'listing' page_number %}"
+class="{% if page_number == page_obj.number %}current{% endif %}"
+>
+{{page_number}}
+</a>
+{% endfor %}
+{% endblock %}
